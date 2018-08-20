@@ -147,23 +147,23 @@ public class Calendar : MonoBehaviour
             case Language.UKRAIN:
                 return new[]
                 {
-                    "января", "февраля", "марта",
-                    "апреля", "мая", "июня",
-                    "июля", "серпня", "сентября",
-                    "октября", "ноября", "декабря"
+                    "січня", "лютого", "березня",
+                    "квітня", "травня", "червня",
+                    "липня", "серпня", "вересня",
+                    "жовтня", "листопада", "грудня"
                 }[month];
             case Language.GERMAN:
                 return new[]
                 {
-                    "января", "февраля", "марта",
-                    "апреля", "мая", "июня",
-                    "июля", "августа", "сентября",
-                    "октября", "ноября", "декабря"
+                    "januar", "februar", "marz",
+                    "april", "mai", "juni",
+                    "juli", "august", "september",
+                    "oktober", "november", "dezember"
                 }[month];
             case Language.ENGLISH:
                 return new[]
                 {
-                    "january", "febuary", "march",
+                    "january", "february", "march",
                     "april", "may", "june",
                     "july", "august", "september",
                     "october", "november", "december"

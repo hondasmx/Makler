@@ -8,7 +8,7 @@ namespace DefaultNamespace
         public GameObject moneyObject;
         public GameObject healthObject;
 
-        public float money = 1000000;
+        public float money = 100000;
         public float health = 100.0f;
 
         private void Start()

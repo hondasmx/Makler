@@ -45,10 +45,10 @@ namespace DefaultNamespace
             switch (language)
             {
                 case Language.RUSSIAN:
-                    newGameTextObject.GetComponent<TextMeshProUGUI>().text = "НОВАЯ ИГРА";
-                    tutorialTextObject.GetComponent<TextMeshProUGUI>().text = "ОБУЧЕНИЕ";
-                    creditsTextObject.GetComponent<TextMeshProUGUI>().text = "АВТОРЫ";
-                    exitTextObject.GetComponent<TextMeshProUGUI>().text = "ВЫХОД";
+                    newGameTextObject.GetComponent<TextMeshProUGUI>().text = "новая игра";
+                    tutorialTextObject.GetComponent<TextMeshProUGUI>().text = "обучение";
+                    creditsTextObject.GetComponent<TextMeshProUGUI>().text = "авторы";
+                    exitTextObject.GetComponent<TextMeshProUGUI>().text = "выход";
                     break;
                 case Language.UKRAIN:
                     newGameTextObject.GetComponent<TextMeshProUGUI>().text = "НОВАЯ ИГРА";
@@ -57,16 +57,16 @@ namespace DefaultNamespace
                     exitTextObject.GetComponent<TextMeshProUGUI>().text = "НОВАЯ ИГРА";
                     break;
                 case Language.GERMAN:
-                    newGameTextObject.GetComponent<TextMeshProUGUI>().text = "НОВАЯ ИГРА";
-                    tutorialTextObject.GetComponent<TextMeshProUGUI>().text = "НОВАЯ ИГРА";
-                    creditsTextObject.GetComponent<TextMeshProUGUI>().text = "НОВАЯ ИГРА";
-                    exitTextObject.GetComponent<TextMeshProUGUI>().text = "НОВАЯ ИГРА";
+                    newGameTextObject.GetComponent<TextMeshProUGUI>().text = "Neues spiel";
+                    tutorialTextObject.GetComponent<TextMeshProUGUI>().text = "Wie spiele ich";
+                    creditsTextObject.GetComponent<TextMeshProUGUI>().text = "Credits";
+                    exitTextObject.GetComponent<TextMeshProUGUI>().text = "Verlassen";
                     break;
                 case Language.ENGLISH:
-                    newGameTextObject.GetComponent<TextMeshProUGUI>().text = "NEW GAME";
-                    tutorialTextObject.GetComponent<TextMeshProUGUI>().text = "НОВАЯ ИГРА";
-                    creditsTextObject.GetComponent<TextMeshProUGUI>().text = "НОВАЯ ИГРА";
-                    exitTextObject.GetComponent<TextMeshProUGUI>().text = "НОВАЯ ИГРА";
+                    newGameTextObject.GetComponent<TextMeshProUGUI>().text = "new game";
+                    tutorialTextObject.GetComponent<TextMeshProUGUI>().text = "how to play";
+                    creditsTextObject.GetComponent<TextMeshProUGUI>().text = "credits";
+                    exitTextObject.GetComponent<TextMeshProUGUI>().text = "quit";
                     break;
                 default:
                     throw new ArgumentOutOfRangeException();
