@@ -5,11 +5,16 @@ namespace MarqueeEvents
     public class MarqueeEvent
     {
         public string eventText;
+        public bool isGenerated;
         private readonly float amount;
 
         public MarqueeEvent(Colors color)
         {
             var companyName = MarqueeEventTexts.GetRandomName(color);
+            if (companyName != "")
+            {
+                isGenerated = true;
+            }
             var marqueeEvent = MarqueeEventTexts.RandomEvent(companyName, color);
             amount = marqueeEvent.amount;
             var affectCompany = marqueeEvent.affectCompany;

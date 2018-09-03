@@ -18,7 +18,7 @@ public class RandomMarqueeEvents : MonoBehaviour
         transform.position = new Vector3(width / 2 + Screen.width, transform.position.y);
     }
 
-    private void Update()
+    private void FixedUpdate()
     {
         transform.Translate(Vector3.left * Time.deltaTime * speed);
         if (width >= 0 && Screen.width - width / 2 >= transform.position.x && !instantiatedNew)
@@ -33,7 +33,7 @@ public class RandomMarqueeEvents : MonoBehaviour
         }
     }
 
-    private string RandomEvent()
+    private static string RandomEvent()
     {
         currentEventNumber++;
         if (currentEventNumber == 5)
@@ -41,18 +41,50 @@ public class RandomMarqueeEvents : MonoBehaviour
             currentEventNumber = 0;
         }
 
+        MarqueeEvent _event;
         switch (currentEventNumber)
         {
             case 0:
-                return "   :::   " + new MarqueeEvent(Colors.BIR).eventText;
+                _event = new MarqueeEvent(Colors.BIR);
+                if (_event.isGenerated)
+                {
+                    return "   :::   " + _event.eventText;
+                }
+
+                return "";
+
             case 1:
-                return "   :::   " + new MarqueeEvent(Colors.BLACK).eventText;
+                _event = new MarqueeEvent(Colors.BLACK);
+                if (_event.isGenerated)
+                {
+                    return "   :::   " + _event.eventText;
+                }
+
+                return "";
             case 2:
-                return "   :::   " + new MarqueeEvent(Colors.GREEN).eventText;
+                _event = new MarqueeEvent(Colors.GREEN);
+                if (_event.isGenerated)
+                {
+                    return "   :::   " + _event.eventText;
+                }
+
+                return "";
             case 3:
-                return "   :::   " + new MarqueeEvent(Colors.RED).eventText;
+                _event = new MarqueeEvent(Colors.RED);
+                if (_event.isGenerated)
+                {
+                    return "   :::   " + _event.eventText;
+                }
+
+                return "";
             case 4:
-                return "   :::   " + new MarqueeEvent(Colors.VIOLET).eventText;
+                _event = new MarqueeEvent(Colors.VIOLET);
+                if (_event.isGenerated)
+                {
+                    return "   :::   " + _event.eventText;
+                }
+
+                return "";
             default:
                 return null;
         }

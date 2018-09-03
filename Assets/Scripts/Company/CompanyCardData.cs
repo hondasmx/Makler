@@ -27,8 +27,8 @@ public class CompanyCardData : MonoBehaviour
     private float startPrice;
     private float currentPrice;
     private int stocksCount;
-    [SerializeField]private float moneySpent;
-    [SerializeField]private float avgPrice;
+    [SerializeField] private float moneySpent;
+    [SerializeField] private float avgPrice;
     private float currentPriceDelta;
     private float currentPriceDeltaPercent;
 
@@ -44,7 +44,7 @@ public class CompanyCardData : MonoBehaviour
 
     public void StartNewDay()
     {
-        CheckForModifierToDissapear();
+        CheckForModifierToDisappear();
         startPrice = currentPrice;
     }
 
@@ -59,7 +59,7 @@ public class CompanyCardData : MonoBehaviour
         UpdateUI();
     }
 
-    private void CheckForModifierToDissapear()
+    private void CheckForModifierToDisappear()
     {
         foreach (var deltaModifier in deltaModifiers)
         {
@@ -76,6 +76,7 @@ public class CompanyCardData : MonoBehaviour
         {
             result += deltaModifier.value;
         }
+
         return result;
     }
 
@@ -94,9 +95,22 @@ public class CompanyCardData : MonoBehaviour
     //Button Buy stocks
     public void BuyStocks(int amount)
     {
-        moneySpent += currentPrice * amount;
-        player.ChangeMoneyAmount(-currentPrice * amount);
-        stocksCount += amount;
+        if (player.isSick) return;
+        if (currentPrice * amount <= player.money)
+        {
+            moneySpent += currentPrice * amount;
+            player.ChangeMoneyAmount(-currentPrice * amount);
+            stocksCount += amount;
+        }
+        else
+        {
+            while (player.money >= currentPrice)
+            {
+                player.ChangeMoneyAmount(-currentPrice);
+                moneySpent += currentPrice;
+                stocksCount++;
+            }
+        }
 
         UpdateUI();
     }
@@ -104,18 +118,22 @@ public class CompanyCardData : MonoBehaviour
     //Button Sell stocks
     public void SellStocks(int amount)
     {
-        moneySpent -= currentPrice * stocksCount;
-        player.ChangeMoneyAmount(currentPrice * stocksCount);
+        if (player.isSick) return;
         if (amount > stocksCount)
         {
+            player.ChangeMoneyAmount(currentPrice * stocksCount);
             stocksCount = 0;
+            moneySpent = 0;
         }
         else
         {
             stocksCount -= amount;
+            moneySpent -= currentPrice * amount;
+            player.ChangeMoneyAmount(currentPrice * amount);
         }
 
         UpdateUI();
+
     }
 
     #endregion
@@ -177,6 +195,7 @@ public class CompanyCardData : MonoBehaviour
         {
             moneySpent = 0;
         }
+
         return stocksCount == 0 ? "" : stocksCount.ToString();
     }
 

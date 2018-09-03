@@ -8,8 +8,8 @@ namespace DefaultNamespace
 {
     public class GameManager : MonoBehaviour
     {
-        private bool soundOn = true;
-        private bool musicOn = true;
+        public static bool soundOn = true;
+        public static bool musicOn = true;
         public static Language language;
         public GameObject musicIcon;
         public GameObject soundIcon;
@@ -19,7 +19,7 @@ namespace DefaultNamespace
         public GameObject tutorialTextObject;
         public GameObject creditsTextObject;
         public GameObject exitTextObject;
-        
+
         public const int compactHeight = 70; //Высота свернутой компании
         public const int advancedHeight = 210; //Высота развернутой компани
         public const float minimumDelta = 0.8f; //-20%
@@ -30,16 +30,19 @@ namespace DefaultNamespace
         public const float averageEventValue = 0.20f;
         public const float maximumEventValue = 0.5f;
 
-        public const int numberOfMarqueeEvents = 4;
-        
+        private static bool created = false;
+
         private void Awake()
         {
             language = Language.RUSSIAN;
-            DontDestroyOnLoad(gameObject);
+//            if (!created)
+//            {
+//                DontDestroyOnLoad(gameObject);
+//                created = true;
+//            }
         }
 
-        
-        
+
         private void SetTexts()
         {
             switch (language)
@@ -51,16 +54,16 @@ namespace DefaultNamespace
                     exitTextObject.GetComponent<TextMeshProUGUI>().text = "выход";
                     break;
                 case Language.UKRAIN:
-                    newGameTextObject.GetComponent<TextMeshProUGUI>().text = "НОВАЯ ИГРА";
-                    tutorialTextObject.GetComponent<TextMeshProUGUI>().text = "НОВАЯ ИГРА";
-                    creditsTextObject.GetComponent<TextMeshProUGUI>().text = "НОВАЯ ИГРА";
-                    exitTextObject.GetComponent<TextMeshProUGUI>().text = "НОВАЯ ИГРА";
+                    newGameTextObject.GetComponent<TextMeshProUGUI>().text = "Нова гра";
+                    tutorialTextObject.GetComponent<TextMeshProUGUI>().text = "Навчання";
+                    creditsTextObject.GetComponent<TextMeshProUGUI>().text = "Автори";
+                    exitTextObject.GetComponent<TextMeshProUGUI>().text = "Вихід";
                     break;
                 case Language.GERMAN:
-                    newGameTextObject.GetComponent<TextMeshProUGUI>().text = "Neues spiel";
-                    tutorialTextObject.GetComponent<TextMeshProUGUI>().text = "Wie spiele ich";
-                    creditsTextObject.GetComponent<TextMeshProUGUI>().text = "Credits";
-                    exitTextObject.GetComponent<TextMeshProUGUI>().text = "Verlassen";
+                    newGameTextObject.GetComponent<TextMeshProUGUI>().text = "neues spiel";
+                    tutorialTextObject.GetComponent<TextMeshProUGUI>().text = "wie spiele ich";
+                    creditsTextObject.GetComponent<TextMeshProUGUI>().text = "credits";
+                    exitTextObject.GetComponent<TextMeshProUGUI>().text = "verlassen";
                     break;
                 case Language.ENGLISH:
                     newGameTextObject.GetComponent<TextMeshProUGUI>().text = "new game";
@@ -72,24 +75,28 @@ namespace DefaultNamespace
                     throw new ArgumentOutOfRangeException();
             }
         }
-        
-       //Button
+
+        //Button
         public void NewGame()
         {
             SceneManager.LoadScene("Game", LoadSceneMode.Single);
         }
+
         //Button
         public void ToggleMusic()
         {
             musicOn = !musicOn;
             musicIcon.GetComponent<Image>().sprite = musicOn ? AllIcons.musicOn : AllIcons.musicOff;
+            GetComponent<AudioSource>().mute = !musicOn;
         }
+
         //Button
         public void ToggleSound()
         {
             soundOn = !soundOn;
             soundIcon.GetComponent<Image>().sprite = soundOn ? AllIcons.soundOn : AllIcons.soundOff;
         }
+
         //Button
         public void ChangeLanguage()
         {

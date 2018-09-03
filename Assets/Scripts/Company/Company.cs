@@ -11,13 +11,11 @@
 
     public string FullName()
     {
-        return firstName + secondName;
+        return firstName + " " + secondName;
     }
 
     public override string ToString()
     {
         return "<size=36>" + firstName + "</size>" + "\n" + "<size=24>" + secondName + "</size>";
     }
-    
-    
 }

@@ -104,7 +104,7 @@ public class Calendar : MonoBehaviour
     {
         CheckNumberOfCompanies();
         CheckForRandomEvent();
-        player.ChangeMoneyAmount(-10);
+        player.DailyChangeMoneyAmount(-10);
         dayInSeconds = 0;
         currentDay += 1;
         if (daysInMonth[currentMonth] < currentDay)
@@ -184,7 +184,7 @@ public class Calendar : MonoBehaviour
         daysWithoutEvent += 1;
         var daysInTwoMonth = daysInMonth[eventsPasses] + daysInMonth[eventsPasses + 1];
         var rand = Random.Range(1, daysInTwoMonth);
-        if (rand <= daysWithoutEvent)
+        if (rand <= daysWithoutEvent && player.money >= 0)
         {
             FindObjectOfType<RandomEvents>().RandomEvent();
             eventsPasses += 2;

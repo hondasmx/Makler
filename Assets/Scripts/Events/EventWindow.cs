@@ -18,12 +18,6 @@ public class EventWindow : MonoBehaviour
         Destroy(gameObject);
     }
     
-    private IEnumerator OnButtonClick()
-    {
-        yield return new WaitForSeconds(2.0f);
-        Time.timeScale = currentTimeScale;
-        Destroy(gameObject);
-    }
 
     public void SetText(string text)
     {
