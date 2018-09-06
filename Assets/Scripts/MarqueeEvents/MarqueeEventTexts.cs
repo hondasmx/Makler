@@ -495,7 +495,7 @@ public class MarqueeEventTexts : MonoBehaviour
         return "";
     }
 
-    private static string GetRandomWord(string[] words)
+    public static string GetRandomWord(string[] words)
     {
         var rand = Random.Range(0, words.Length);
         return words[rand];

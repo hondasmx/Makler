@@ -12,7 +12,7 @@ namespace DefaultNamespace
         public GameObject winWindow;
         public GameObject bottleObject;
 
-        [NonSerialized] public float money = 0;
+        [NonSerialized] public float money = 10000;
         public float health = 100.0f;
 
         private const float winConditionAmount = 1000000;
@@ -38,7 +38,7 @@ namespace DefaultNamespace
 
         private void UpdateHealthUI()
         {
-            healthObject.GetComponent<TextMeshProUGUI>().text = health.ToString();
+            healthObject.GetComponent<TextMeshProUGUI>().text = health + "%";
         }
 
         private void UpdateMoneyUI()
@@ -58,12 +58,15 @@ namespace DefaultNamespace
                 if (money + amount < 0)
                 {
                     ChangeHealthAmount(-5);
+                    SellStocksForHealUp();
+                    ChangeMoneyAmount(amount * 2);
                     return;
                 }
 
                 ChangeMoneyAmount(amount);
             }
         }
+
 
         public void ChangeMoneyAmount(float amount)
         {
@@ -131,6 +134,17 @@ namespace DefaultNamespace
             }
 
             UpdateHealthUI();
+        }
+
+        private static void SellStocksForHealUp()
+        {
+            var companies = FindObjectsOfType<CompanyCardData>();
+            foreach (var t in companies)
+            {
+                if (t.stocksCount <= 0) continue;
+                t.SellStocks(9999999);
+                return;
+            }
         }
     }
 }

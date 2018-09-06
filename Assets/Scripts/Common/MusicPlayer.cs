@@ -1,4 +1,5 @@
 ﻿using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(AudioSource))]
@@ -8,12 +9,16 @@ public class MusicPlayer : MonoBehaviour
 
     public AudioClip clip1;
     public AudioClip clip2;
-    private AudioClip[] clips;
+    private readonly List<AudioClip> clips = new List<AudioClip>();
 
     private void Awake()
     {
         audioSource = GetComponent<AudioSource>();
-        clips = new[] {clip1, clip2};
+        clips.Add(clip1);
+        if (clip2 != null)
+        {
+            clips.Add(clip2);
+        }
         StartCoroutine(PlayList());
     }
 
@@ -22,7 +27,7 @@ public class MusicPlayer : MonoBehaviour
     {
         while (true)
         {
-            var clip = clips[Random.Range(0, 2)];
+            var clip = clips[Random.Range(0, clips.Count)];
             audioSource.clip = clip;
             audioSource.Play();
             yield return new WaitForSeconds(clip.length);

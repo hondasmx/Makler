@@ -8,13 +8,17 @@ public static class EventTexts
         switch (GameManager.language)
         {
             case Language.RUSSIAN:
-                return "Поздравляем, операция по увеличению груди (ушей) - прошла успешно.";
+                return "Поздравляем, операция по увеличению " +
+                       MarqueeEventTexts.GetRandomWord(new[] {"груди", "ушей"}) + " - прошла успешно.";
             case Language.UKRAIN:
-                return "Вітаємо, операція по збільшенню грудей (вух) - пройшла успішно.";
+                return "Вітаємо, операція по збільшенню " +
+                       MarqueeEventTexts.GetRandomWord(new[] {"грудей", "вух"}) + " - пройшла успішно.";
             case Language.GERMAN:
-                return "Gratulation, ihre Brustvergrößerungs-OP (Ohrvergrößerungs-OP) war erfolgreich.";
+                return "Gratulation, ihre " +
+                       MarqueeEventTexts.GetRandomWord(new[] {"Brustvergrößerungs-OP", "Ohrvergrößerungs-OP"}) + " war erfolgreich.";
             case Language.ENGLISH:
-                return "Congratulations! Your breast (ears) correction surgery was successfull.";
+                return "Congratulations! Your " +
+                       MarqueeEventTexts.GetRandomWord(new[] {"breast", "ears"}) + " correction surgery was successfull.";
             default:
                 throw new ArgumentOutOfRangeException();
         }

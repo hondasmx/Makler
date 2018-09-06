@@ -26,7 +26,7 @@ public class CompanyCardData : MonoBehaviour
 
     private float startPrice;
     private float currentPrice;
-    private int stocksCount;
+    public int stocksCount;
     [SerializeField] private float moneySpent;
     [SerializeField] private float avgPrice;
     private float currentPriceDelta;
